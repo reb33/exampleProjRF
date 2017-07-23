@@ -27,12 +27,12 @@ public class PageFunctionalImpl implements PageFunctional{
             return (SelenideElement) Arrays.stream(fields)
                     .filter(field -> field.isAnnotationPresent(NameOfElement.class)
                             && field.getAnnotation(NameOfElement.class).value().equals(elementName)).findFirst().get().get(this);
+        }catch (NoSuchElementException e1){
+            Selenide.screenshot("No_container");
+            throw new NoSuchElementException("ERROR: there is no such container with name " + elementName + " at page " + this.getClass().getName());
         } catch (IllegalAccessException e) {
             Selenide.screenshot("No_element");
             throw new RuntimeException("ERROR: element with name " + elementName + " at page " + this.getClass().getName() + " is not public");
-        }catch (NoSuchElementException e1){
-            Selenide.screenshot("No_element");
-            throw new NoSuchElementException("ERROR: there is no such element with name " + elementName + " at page " + this.getClass().getName());
         }
     }
 
@@ -53,7 +53,7 @@ public class PageFunctionalImpl implements PageFunctional{
             return (AbstractBlock) createContainer(listType, (SelenideElement) returnField.get(this));
         } catch (IllegalAccessException e) {
             Selenide.screenshot("No_container");
-            throw new NoSuchElementException(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
