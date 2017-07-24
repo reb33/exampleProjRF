@@ -13,6 +13,6 @@ public interface PageFunctional {
     SelenideElement get(String elementName);
     AbstractBlock getContainer(String elementName);
     <T extends AbstractBlock>List<T> getCollection(String elementName);
-//    ElementsContainer createContainer (Class<?> listType, SelenideElement self);
+//    List<List<String>> getList(String elementName);
 
 }

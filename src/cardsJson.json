@@ -1,0 +1,28 @@
+{
+  "cards":[
+    {
+      "name":"Дебетовка в рублях",
+      "type":"RUB Visa Signature Easy Europe",
+      "start":"05.2016",
+      "end":"04.2020",
+      "number":"425620******1234",
+      "description":"Дебетовая карта"
+    },
+    {
+      "name":"Кредитка Visa",
+      "type":"RUB Visa Gold Travel Credit",
+      "start":"01.2017",
+      "end":"02.2020",
+      "number":"510069******2345",
+      "description":""
+    },
+    {
+      "name":"Карта жены",
+      "type":"RUB Supplementary MasterCard Gold Package",
+      "start":"02.2017",
+      "end":"11.2020",
+      "number":"",
+      "description":"Дебетовая картаДополнительная"
+    }
+  ]
+}

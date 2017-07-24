@@ -1,9 +1,15 @@
 package steps;
 
 import com.codeborne.selenide.ElementsContainer;
+import com.codeborne.selenide.SelenideElement;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import pages.AbstractBlock;
+import pages.PageCompare;
 import pages.pages.FirstPage;
+import rest.RestCompare;
+
+import java.util.List;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
@@ -17,21 +23,22 @@ public class MySteps {
 
     @Given("приложение запущено")
     public void start(){
-        open("https://demo.litecart.net/en/");
+        open("https://online.raiffeisen.ru/demo/#/cards");
+        firstPage.pageIsLoaded();
 
     }
 
-    @Then("данные контейнера (\\w+)")
+    @Then("данные контейнера (.+)")
     public void getContainer(String contName){
         ElementsContainer container = firstPage.getContainer(contName);
         System.out.println();
     }
 
-    @Then("данные коллекции")
-    public void getCollection(){
-//        List<SelenideElement> ducks = firstPage.getList("список популярных уток");
-//        ducks.get(0).get("название");
-//        List<Duck> ducks = firstPage.getCollection("популярные утки");
+    @Then("данные коллекции (.+) соответствуют Rest запросу")
+    public void getCollection(String collectionName){
+        List<List<String>> listOfPage = ((PageCompare)firstPage).getList(collectionName);
+        RestCompare compare = ((PageCompare)firstPage).getRestCompare(collectionName);
+        List<List<String>> listOfRest = compare.listValues();
         System.out.println();
     }
 
