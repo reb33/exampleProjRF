@@ -3,16 +3,9 @@ package pages.blocks;
 import annotations.NameOfElement;
 import annotations.TypeOfBlock;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.ElementsContainer;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import pages.AbstractBlock;
-import pages.BlockCompare;
-import rest.RestCompare;
-import rest.cards.RestCards;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by konstantin on 24.07.2017.
@@ -55,4 +48,6 @@ public class BankCard extends AbstractBlock{
 //    public List<List<String>> getList(String elementName) {
 //        return elementsFactory.getList(this, elementName, compareFields);
 //    }
+
+
 }

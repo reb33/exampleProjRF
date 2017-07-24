@@ -28,7 +28,7 @@ public class RestCards implements RestCompare{
         restCards = Mockito.mock(RestCards.class);
         String json = "";
         try {
-            json = FileUtils.readFileToString(FileUtils.getFile(""), Charset.defaultCharset());
+            json = FileUtils.readFileToString(FileUtils.getFile("./cardsJson.json"), Charset.defaultCharset());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,7 +36,7 @@ public class RestCards implements RestCompare{
     }
 
 
-    private String getRest() {
+    String getRest() {
         return when().
         get("/rides").
         then().

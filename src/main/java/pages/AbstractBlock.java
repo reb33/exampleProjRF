@@ -2,13 +2,15 @@ package pages;
 
 import com.codeborne.selenide.ElementsContainer;
 import com.codeborne.selenide.SelenideElement;
+import rest.RestCompare;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Konstantin on 23.07.2017.
  */
-public abstract class AbstractBlock extends ElementsContainer implements PageFunctional{
+public abstract class AbstractBlock extends ElementsContainer implements PageFunctional, ComparingCollection{
     protected ElementsFactory elementsFactory = new ElementFactoryImpl();
 
     @Override
@@ -31,6 +33,20 @@ public abstract class AbstractBlock extends ElementsContainer implements PageFun
 //        return pageFunctional.createContainer(listType, self);
 //    }
 
+    @Override
+    public List<List<String>> getList(String elementName) {
+        getComparingMap().computeIfAbsent(elementName, e->{throw new RuntimeException("item "+elementName+" not found");});
+        return elementsFactory.getList(this, elementName, getComparingMap().get(elementName).getCompareFields());
+    }
 
+    @Override
+    public RestCompare getRestCompare(String elementName) {
+        getComparingMap().computeIfAbsent(elementName, e->{throw new RuntimeException("item "+elementName+" not found");});
+        return getComparingMap().get(elementName).getRestCompare();
+    }
+
+    public Map<String, CompareValuesPair> getComparingMap(){
+        throw new RuntimeException("method getComparingMap() must be overridden if collection comparing execute");
+    }
 
 }

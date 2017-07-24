@@ -6,19 +6,18 @@ import annotations.TypeOfBlock;
 import annotations.NameOfElement;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.ElementsContainer;
 import com.codeborne.selenide.Selenide;
 import lombok.Getter;
 import org.openqa.selenium.support.FindBy;
-import pages.AbstractBlock;
 import pages.AbstractPage;
-import pages.BlockCompare;
-import pages.PageCompare;
+import pages.CompareValuesPair;
+import pages.ComparingCollection;
 import pages.blocks.BankCard;
 import rest.RestCompare;
 import rest.cards.RestCards;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,22 +25,12 @@ import java.util.Map;
 /**
  * Created by konstantin on 30.01.2017.
  */
-public class FirstPage extends AbstractPage implements PageCompare{
+public class FirstPage extends AbstractPage implements ComparingCollection {
 
-    @Getter
-    enum ListComparing{
-        CARDS("Карты", new String[]{"Название", "Тип", "Номер карты", "Даты действия", "Описание"}, new RestCards());
-
-        String name;
-        String[] fields;
-        RestCompare compare;
-        ListComparing(String name, String[] fields, RestCompare compare) {
-            this.name=name;
-            this.fields=fields;
-            this.compare=compare;
-        }
+    private static final Map<String, CompareValuesPair> comparingMap = new HashMap<>();
+    static {
+        comparingMap.put("Карты", new CompareValuesPair(new String[]{"Название", "Тип", "Номер карты", "Даты действия", "Описание"}, new RestCards()));
     }
-
 
 
 //    @NameOfElement(value = "список популярных уток")
@@ -72,21 +61,7 @@ public class FirstPage extends AbstractPage implements PageCompare{
     }
 
     @Override
-    public List<List<String>> getList(String elementName) {
-        String[] fields = Arrays.stream(ListComparing.values())
-                .filter(el -> el.getName().equals(elementName))
-                .findFirst()
-                .get()
-                .getFields();
-        return elementsFactory.getList(this, elementName, fields);
-    }
-
-    @Override
-    public RestCompare getRestCompare(String elementName) {
-        return Arrays.stream(ListComparing.values())
-                .filter(el -> el.getName().equals(elementName))
-                .findFirst()
-                .get()
-                .getCompare();
+    public Map<String, CompareValuesPair> getComparingMap() {
+        return comparingMap;
     }
 }

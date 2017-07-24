@@ -1,11 +1,9 @@
 package steps;
 
 import com.codeborne.selenide.ElementsContainer;
-import com.codeborne.selenide.SelenideElement;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import pages.AbstractBlock;
-import pages.PageCompare;
+import pages.ComparingCollection;
 import pages.pages.FirstPage;
 import rest.RestCompare;
 
@@ -36,9 +34,9 @@ public class MySteps {
 
     @Then("данные коллекции (.+) соответствуют Rest запросу")
     public void getCollection(String collectionName){
-        List<List<String>> listOfPage = ((PageCompare)firstPage).getList(collectionName);
-        RestCompare compare = ((PageCompare)firstPage).getRestCompare(collectionName);
-        List<List<String>> listOfRest = compare.listValues();
+        List<List<String>> listOfPage = ((ComparingCollection)firstPage).getList(collectionName);
+        RestCompare rest = ((ComparingCollection)firstPage).getRestCompare(collectionName);
+        List<List<String>> listOfRest = rest.listValues();
         System.out.println();
     }
 

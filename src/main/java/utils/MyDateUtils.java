@@ -1,6 +1,7 @@
 package utils;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Spliterators;
 
@@ -9,6 +10,7 @@ import java.util.Spliterators;
  */
 public class MyDateUtils {
     public static String retDateInPageFormat(String date){
-        return LocalDate.parse(date, DateTimeFormatter.ofPattern("MM.YYYY")).format(DateTimeFormatter.ofPattern("MM/YY"));
+        //LocalDate.parse(date, DateTimeFormatter.ofPattern("MM.yyyy")).format(DateTimeFormatter.ofPattern("MM/yy"));
+        return YearMonth.parse(date, DateTimeFormatter.ofPattern("MM.yyyy")).format(DateTimeFormatter.ofPattern("MM/yy"));
     }
 }
