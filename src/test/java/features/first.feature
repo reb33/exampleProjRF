@@ -2,8 +2,8 @@ Feature: firstTest
 
   Scenario: firstTest_scenario
 
-#    Given приложение запущено
-#    Then данные коллекции <Карты> соответствуют запросу
+    Given приложение запущено
+    Then данные коллекции <Карты> соответствуют запросу
 
 
   Scenario: secondTest_scenario

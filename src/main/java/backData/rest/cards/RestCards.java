@@ -26,7 +26,7 @@ public class RestCards implements BackDataCompare {
         restCards = Mockito.mock(RestCards.class);
         String json = "";
         try {
-            json = FileUtils.readFileToString(FileUtils.getFile("./cardsJson.json"), Charset.defaultCharset());
+            json = FileUtils.readFileToString(FileUtils.getFile("./cardsJson.json"), Charset.forName("UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,8 +44,8 @@ public class RestCards implements BackDataCompare {
 
     @Override
     public List<List<String>> listValues(String... args) {
-        String response = restCards.getRest();
-        Cards cards = new Gson().fromJson(response, Cards.class);
+        String response = restCards.getRest();Cards cards = new Gson().fromJson(response, Cards.class);
+
         return cards.getCards().stream()
                 .map(card -> new ArrayList<>(Arrays.asList(
                         card.getName(),

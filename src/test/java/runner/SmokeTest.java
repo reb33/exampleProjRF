@@ -3,6 +3,7 @@ package runner;
 import com.codeborne.selenide.Configuration;
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
@@ -20,8 +21,8 @@ public class SmokeTest
     static public void setupTimeout()
     {
         Configuration.timeout = 10000;
-        System.setProperty("webdriver.chrome.driver", "C:/drv/chromedriver.exe");
-        Configuration.browser = "chrome";
+        System.setProperty("webdriver.chrome.driver", "./drv/chromedriver.exe");
+        Configuration.browser = StringUtils.isEmpty(System.getProperty("browser"))?"chrome":System.getProperty("browser");
 
     }
 

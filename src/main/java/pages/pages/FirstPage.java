@@ -28,22 +28,6 @@ public class FirstPage extends AbstractPage implements ComparingCollection {
         comparingMap.put("Карты", new CompareValuesPair(new String[]{"Название", "Тип", "Номер карты", "Даты действия", "Описание"}, new RestCards()));
     }
 
-
-//    @NameOfElement(value = "список популярных уток")
-//    List<SelenideElement> popularDuckList = $$("#box-most-popular ul li");
-
-//    @NameOfElement(value = "список популярных уток")
-//    @FindBy(css = "#box-most-popular ul li")
-//    List<SelenideElement> popularDuckList;
-//
-//    @NameOfElement(value = "фронтовая картинка")
-//    @FindBy(id="rslides1_s0")
-//    SelenideElement frontPic;
-
-//    @NameOfElement(value = "популярная утка")
-//    @FindBy(css="#box-most-popular ul li")
-//    Duck popularDuck;
-
     private final String cardCss = "default-card-item-widget > div";
 
     @NameOfElement(value = "Карты")

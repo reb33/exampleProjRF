@@ -115,8 +115,7 @@ public class ElementFactoryImpl implements ElementsFactory{
         Field[] fields = page.getClass().getDeclaredFields();
         Field returnField;
         try {
-            returnField = Arrays.asList(fields)
-                    .stream()
+            returnField = Arrays.stream(fields)
                     .filter(field -> field.isAnnotationPresent(NameOfElement.class)
                             && field.getAnnotation(NameOfElement.class).value().equals(elementName)).findFirst().get();
         }catch (NoSuchElementException e1){
