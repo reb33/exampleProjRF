@@ -92,7 +92,6 @@
                     <systemPropertyVariables>
                         <propertyName>${browser}</propertyName>
                     </systemPropertyVariables>
-                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
         </plugins>
