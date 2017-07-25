@@ -1,12 +1,12 @@
-package rest;
+package backData;
 
 import java.util.List;
 
 /**
  * Created by konstantin on 24.07.2017.
  */
-public interface RestCompare {
+public interface BackDataCompare {
 
 //    String getRest();
-    List<List<String>> listValues();
+    List listValues(String... args);
 }

@@ -7,18 +7,14 @@ import annotations.NameOfElement;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
-import lombok.Getter;
 import org.openqa.selenium.support.FindBy;
 import pages.AbstractPage;
 import pages.CompareValuesPair;
 import pages.ComparingCollection;
 import pages.blocks.BankCard;
-import rest.RestCompare;
-import rest.cards.RestCards;
+import backData.rest.cards.RestCards;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 

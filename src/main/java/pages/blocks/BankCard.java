@@ -2,16 +2,27 @@ package pages.blocks;
 
 import annotations.NameOfElement;
 import annotations.TypeOfBlock;
+import backData.bd.transactions.BDTransactions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import pages.AbstractBlock;
+import pages.CompareValuesPair;
+import backData.rest.cards.RestCards;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by konstantin on 24.07.2017.
  */
 public class BankCard extends AbstractBlock{
-//    String[] compareFields = new String[]{"Название", "Тип", "Номер карты", "Даты действия", "Описание"};
+
+    private static final Map<String, CompareValuesPair> comparingMap = new HashMap<>();
+    static {
+        comparingMap.put("Транзакции", new CompareValuesPair(new String[]{"Дата","Описание","Сумма"}, new BDTransactions(),
+                t -> t.get("Номер карты").getText()));
+    }
 
     @NameOfElement(value = "Название")
     @FindBy(css = "div.product-header-title__name span")
@@ -39,15 +50,8 @@ public class BankCard extends AbstractBlock{
     public ElementsCollection transactions;
 
 
-//    @Override
-//    public RestCompare getRestCompare() {
-//        return new RestCards();
-//    }
-//
-//    @Override
-//    public List<List<String>> getList(String elementName) {
-//        return elementsFactory.getList(this, elementName, compareFields);
-//    }
-
-
+    @Override
+    public Map<String, CompareValuesPair> getComparingMap() {
+        return comparingMap;
+    }
 }

@@ -1,17 +1,15 @@
-package rest.cards;
+package backData.rest.cards;
 
 import com.google.gson.Gson;
 import io.restassured.http.ContentType;
 import org.apache.commons.io.FileUtils;
 import org.mockito.Mockito;
-import rest.RestCompare;
+import backData.BackDataCompare;
 import utils.MyDateUtils;
 import utils.MyStringUtils;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +20,7 @@ import static io.restassured.RestAssured.*;
 /**
  * Created by konstantin on 24.07.2017.
  */
-public class RestCards implements RestCompare{
+public class RestCards implements BackDataCompare {
     private RestCards restCards;
     public RestCards() {
         restCards = Mockito.mock(RestCards.class);
@@ -45,7 +43,7 @@ public class RestCards implements RestCompare{
     }
 
     @Override
-    public List<List<String>> listValues() {
+    public List<List<String>> listValues(String... args) {
         String response = restCards.getRest();
         Cards cards = new Gson().fromJson(response, Cards.class);
         return cards.getCards().stream()

@@ -1,11 +1,11 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import rest.RestCompare;
+import backData.BackDataCompare;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * Created by konstantin on 30.01.2017.
@@ -42,9 +42,32 @@ public abstract class AbstractPage implements PageFunctional, ComparingCollectio
     }
 
     @Override
-    public RestCompare getRestCompare(String elementName) {
+    public BackDataCompare getBackDataCompare(String elementName) {
         getComparingMap().computeIfAbsent(elementName, e->{throw new RuntimeException("item "+elementName+" not found");});
-        return getComparingMap().get(elementName).getRestCompare();
+        return getComparingMap().get(elementName).getBackDataCompare();
+    }
+
+    @Override
+    public String[] getFields(String elementName) {
+        getComparingMap().computeIfAbsent(elementName, e->{throw new RuntimeException("item "+elementName+" not found");});
+        return getComparingMap().get(elementName).getCompareFields();
+    }
+
+    @Override
+    public String[] getParams(String elementName) {
+        getComparingMap().computeIfAbsent(elementName, e->{throw new RuntimeException("item "+elementName+" not found");});
+        return getComparingMap().get(elementName).getParams();
+    }
+
+    @Override
+    public Function<PageFunctional, String>[] getFunctions(String elementName) {
+        getComparingMap().computeIfAbsent(elementName, e->{throw new RuntimeException("item "+elementName+" not found");});
+        return getComparingMap().get(elementName).getFunctions();
+    }
+
+    @Override
+    public void setParams(String elementName, String[] params) {
+        getComparingMap().get(elementName).setParam(params);
     }
 
     public Map<String, CompareValuesPair> getComparingMap(){
